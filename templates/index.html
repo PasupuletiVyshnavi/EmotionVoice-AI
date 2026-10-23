@@ -1,1 +1,110 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmotiVoice AI | Speech Emotion Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="/">
+            <span class="brand-icon">EV</span>
+            <span>EmotiVoice <span class="accent">AI</span></span>
+        </a>
+        <span class="status"><span class="dot"></span> Speech AI Lab</span>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">AI-POWERED AUDIO ANALYSIS</p>
+            <h1>Hear the emotion.<br><span class="gradient">Understand the voice.</span></h1>
+            <p class="subtitle">
+                Upload a speech recording and let AI estimate the emotion
+                expressed through its acoustic patterns.
+            </p>
+        </section>
+
+        <section class="workspace">
+            <div class="panel upload-panel">
+                <div class="section-heading">
+                    <span class="step">01</span>
+                    <div>
+                        <h2>Upload your audio</h2>
+                        <p>Choose a WAV speech recording to analyze.</p>
+                    </div>
+                </div>
+
+                <label class="dropzone" id="dropzone" for="audioFile">
+                    <div class="upload-icon">↑</div>
+                    <h3>Drop your audio here</h3>
+                    <p>or <span class="accent">browse files</span></p>
+                    <span class="file-note">WAV format · Maximum 20 MB</span>
+                    <input type="file" id="audioFile" accept=".wav,audio/wav">
+                </label>
+
+                <div id="fileInfo" class="file-info hidden">
+                    <span>♫</span>
+                    <div class="file-details">
+                        <strong id="fileName">audio.wav</strong>
+                        <span id="fileSize"></span>
+                    </div>
+                    <button id="removeFile" class="remove-button" type="button"
+                        aria-label="Remove selected file">×</button>
+                </div>
+
+                <audio id="audioPreview" controls class="audio-preview hidden"></audio>
+
+                <button id="analyzeBtn" class="primary-button" disabled>
+                    Analyze emotion <span>→</span>
+                </button>
+                <p id="message" class="message" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="panel result-panel">
+                <div class="section-heading">
+                    <span class="step">02</span>
+                    <div>
+                        <h2>Emotion analysis</h2>
+                        <p>Your prediction will appear here.</p>
+                    </div>
+                </div>
+
+                <div id="emptyState" class="empty-state">
+                    <div class="sound-visual">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <h3>Waiting for audio</h3>
+                    <p>Upload a recording to see the model's prediction.</p>
+                </div>
+
+                <div id="result" class="result hidden">
+                    <p class="result-label">PREDICTED EMOTION</p>
+                    <div id="emotionIcon" class="emotion-icon">☺</div>
+                    <h3 id="emotionName">Happy</h3>
+                    <p class="confidence-text">
+                        Model confidence <strong id="confidence">0%</strong>
+                    </p>
+                    <div class="progress-track">
+                        <div id="confidenceBar" class="progress-fill"></div>
+                    </div>
+
+                    <h4>Emotion score breakdown</h4>
+                    <div id="scoreList" class="score-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <p class="disclaimer">
+            Research demonstration only. Predictions are estimates from voice
+            patterns and do not establish a person's actual feelings.
+        </p>
+    </main>
+
+    <footer>EmotiVoice AI · Speech Emotion Recognition Project</footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
