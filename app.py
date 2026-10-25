@@ -11,8 +11,14 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024
 
-MODEL_PATH = "models/emotion_model.keras"
-LABELS_PATH = "models/emotion_labels.npy"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+MODEL_PATH = os.path.join(
+    BASE_DIR, "models", "emotion_model.keras"
+)
+LABELS_PATH = os.path.join(
+    BASE_DIR, "models", "emotion_labels.npy"
+)
 SAMPLE_RATE = 16000
 N_MFCC = 40
 MAX_FRAMES = 174
